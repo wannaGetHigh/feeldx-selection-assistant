@@ -28,7 +28,7 @@ export function SummarySection({ roomConfig }: SummarySectionProps) {
   }
 
   return (
-    <Card>
+    <Card className="transition-shadow duration-200 hover:shadow-md">
       <CardHeader className="pb-3 flex flex-row items-center justify-between">
         <CardTitle className="text-base">AI Summary</CardTitle>
         {aiSummary && !isPending && (

@@ -73,3 +73,43 @@ export const BED_OPTIONS: MaterialOptionDto[] = [
   { id: 'bed-platform', name: 'Platform Bed', costTier: 'low', shade: 'neutral' },
   { id: 'bed-metal', name: 'Metal Bed Frame', costTier: 'low', shade: 'dark' },
 ]
+
+export const DINING_TABLE_OPTIONS: MaterialOptionDto[] = [
+  { id: 'dtable-timber', name: 'Solid Timber', costTier: 'medium', shade: 'dark' },
+  { id: 'dtable-marble', name: 'Marble Top', costTier: 'high', shade: 'light' },
+  { id: 'dtable-glass', name: 'Glass Top', costTier: 'medium', shade: 'light' },
+  { id: 'dtable-concrete', name: 'Concrete Top', costTier: 'medium', shade: 'dark' },
+  { id: 'dtable-rattan', name: 'Rattan & Timber', costTier: 'low', shade: 'neutral' },
+]
+
+export const DINING_CHAIR_OPTIONS: MaterialOptionDto[] = [
+  { id: 'dchair-timber', name: 'Timber (set of 4)', costTier: 'low', shade: 'dark' },
+  { id: 'dchair-upholstered', name: 'Upholstered (set of 4)', costTier: 'medium', shade: 'neutral' },
+  { id: 'dchair-velvet', name: 'Velvet (set of 4)', costTier: 'high', shade: 'dark' },
+  { id: 'dchair-rattan', name: 'Rattan (set of 4)', costTier: 'low', shade: 'neutral' },
+  { id: 'dchair-metal', name: 'Metal Frame (set of 4)', costTier: 'medium', shade: 'neutral' },
+]
+
+export const DESK_OPTIONS: MaterialOptionDto[] = [
+  { id: 'desk-timber', name: 'Solid Timber', costTier: 'medium', shade: 'dark' },
+  { id: 'desk-laminate', name: 'Laminate', costTier: 'low', shade: 'neutral' },
+  { id: 'desk-glass', name: 'Glass Top', costTier: 'medium', shade: 'light' },
+  { id: 'desk-marble', name: 'Marble Top', costTier: 'high', shade: 'light' },
+  { id: 'desk-standing', name: 'Sit-Stand Adjustable', costTier: 'high', shade: 'neutral' },
+]
+
+export const DECKING_OPTIONS: MaterialOptionDto[] = [
+  { id: 'deck-hardwood', name: 'Hardwood Timber', costTier: 'high', shade: 'dark' },
+  { id: 'deck-composite', name: 'Composite Decking', costTier: 'medium', shade: 'neutral' },
+  { id: 'deck-concrete', name: 'Stamped Concrete', costTier: 'medium', shade: 'dark' },
+  { id: 'deck-tiles', name: 'Outdoor Porcelain Tiles', costTier: 'medium', shade: 'light' },
+  { id: 'deck-pebble', name: 'Pebble & Aggregate', costTier: 'low', shade: 'neutral' },
+]
+
+export const OUTDOOR_FURNITURE_OPTIONS: MaterialOptionDto[] = [
+  { id: 'outdoor-wicker', name: 'Wicker Lounge Set', costTier: 'medium', shade: 'neutral' },
+  { id: 'outdoor-teak', name: 'Teak Dining Set', costTier: 'high', shade: 'dark' },
+  { id: 'outdoor-metal', name: 'Powder-Coat Metal Set', costTier: 'low', shade: 'neutral' },
+  { id: 'outdoor-concrete', name: 'Concrete & Steel', costTier: 'high', shade: 'dark' },
+  { id: 'outdoor-rope', name: 'Rope & Aluminium', costTier: 'medium', shade: 'neutral' },
+]

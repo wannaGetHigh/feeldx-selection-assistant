@@ -12,7 +12,7 @@ const ReviewSelectedSection = ({ roomConfig }: ReviewSelectedSectionProps) => {
   const { data: selections = {} } = useRoomConfigQuery(roomConfig.type);
 
   return (
-    <Card>
+    <Card className="transition-shadow duration-200 hover:shadow-md">
       <CardHeader className="pb-3">
         <CardTitle className="text-base">Selected Items</CardTitle>
       </CardHeader>

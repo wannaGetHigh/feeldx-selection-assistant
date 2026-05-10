@@ -30,7 +30,11 @@ export function RoomSelectionPage() {
             </RoomSelectorSection>
 
             {roomConfigs.map((config) => (
-              <TabsContent key={config.type} value={config.type}>
+              <TabsContent
+                key={config.type}
+                value={config.type}
+                className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
+              >
                 <SelectionsSection roomConfig={config} />
               </TabsContent>
             ))}

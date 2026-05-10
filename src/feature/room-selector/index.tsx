@@ -13,7 +13,7 @@ export function SelectionsSection({ roomConfig }: SelectionsSectionProps) {
   return (
     <div className="grid gap-6 lg:grid-cols-3">
       <div className="lg:col-span-2">
-        <Card>
+        <Card className="transition-shadow duration-200 hover:shadow-md">
           <CardHeader className="pb-3">
             <CardTitle className="text-base">
               {roomConfig.emoji} {roomConfig.label} — Materials &amp; Furniture

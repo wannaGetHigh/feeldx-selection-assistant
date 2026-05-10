@@ -1,6 +1,6 @@
 import type { CostTier, RoomConfigDto, RoomConfigPayload } from "@/dtos/room-config.dto";
-
 import type { AISummaryDto, AISummaryItemDto } from "@/dtos/ai-summary.dto";
+import { getCostRange, sumCostRanges } from "@/lib/cost-ranges";
 
 const COST_RANK: Record<CostTier, number> = { low: 0, medium: 1, high: 2 };
 
@@ -27,6 +27,7 @@ export function generateSummary(
         categoryLabel: category.label,
         optionName: option.name,
         costTier: option.costTier,
+        estimatedCost: getCostRange(category.id, option.costTier),
       });
     } else {
       missingCategories.push(category.label);
@@ -34,6 +35,7 @@ export function generateSummary(
   }
 
   const overallCostTier = highestCostTier(selectedItems.map((i) => i.costTier));
+  const totalEstimatedCost = sumCostRanges(selectedItems.map((i) => i.estimatedCost));
   const warnings: string[] = [];
 
   const flooringOption = roomConfig.categories
@@ -108,6 +110,7 @@ export function generateSummary(
     roomLabel: roomConfig.label,
     selectedItems,
     overallCostTier,
+    totalEstimatedCost,
     warnings,
     missingCategories,
     recommendations,

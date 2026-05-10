@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge'
 import type { AISummaryDto } from '@/dtos/ai-summary.dto'
 import type { CostTier } from '@/dtos/room-config.dto'
+import { formatCostRange } from '@/lib/cost-ranges'
 
 interface AISummaryPanelProps {
   summary: AISummaryDto
@@ -20,15 +21,20 @@ const COST_COLOR: Record<CostTier, string> = {
 
 export function AISummaryPanel({ summary }: AISummaryPanelProps) {
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 animate-in fade-in-0 duration-300">
       <section>
         <h3 className="text-sm font-semibold mb-2">Your Selections</h3>
         {summary.selectedItems.length > 0 ? (
-          <ul className="space-y-1">
+          <ul className="space-y-1.5">
             {summary.selectedItems.map((item) => (
-              <li key={item.categoryLabel} className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">{item.categoryLabel}</span>
-                <span className="font-medium">{item.optionName}</span>
+              <li key={item.categoryLabel} className="flex items-center justify-between text-sm gap-3">
+                <span className="text-muted-foreground shrink-0">{item.categoryLabel}</span>
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="font-medium truncate">{item.optionName}</span>
+                  <span className="text-xs text-muted-foreground shrink-0 tabular-nums">
+                    {formatCostRange(item.estimatedCost)}
+                  </span>
+                </div>
               </li>
             ))}
           </ul>
@@ -37,11 +43,12 @@ export function AISummaryPanel({ summary }: AISummaryPanelProps) {
         )}
       </section>
 
-      <section>
-        <h3 className="text-sm font-semibold mb-1">Overall Cost Estimate</h3>
-        <p className={`text-sm font-medium ${COST_COLOR[summary.overallCostTier]}`}>
-          {COST_LABEL[summary.overallCostTier]}
+      <section className="rounded-md bg-muted/50 px-3 py-2.5 space-y-0.5">
+        <h3 className="text-sm font-semibold">Estimated Total</h3>
+        <p className={`text-lg font-bold tabular-nums ${COST_COLOR[summary.overallCostTier]}`}>
+          {formatCostRange(summary.totalEstimatedCost)}
         </p>
+        <p className="text-xs text-muted-foreground">{COST_LABEL[summary.overallCostTier]}</p>
       </section>
 
       {summary.missingCategories.length > 0 && (
