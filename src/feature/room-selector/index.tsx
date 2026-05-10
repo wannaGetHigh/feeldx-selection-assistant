@@ -1,9 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 import ReviewSelectedSection from "./components/ReviewSelectedSection";
 import { SelectionPanel } from "./components/SelectionPanel";
-import type { RoomConfig, Selections } from "./types";
 import { SummarySection } from "./components/SummarySection";
+import type { RoomConfig, Selections } from "./types";
 
 interface SelectionsSectionProps {
   roomConfig: RoomConfig;
