@@ -1,9 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ErrorBoundary } from 'react-error-boundary'
 import invariant from 'tiny-invariant'
 
 import App from './App.tsx'
+import { ErrorFallback } from './components/errors/ErrorFallback.tsx'
 import './index.css'
 
 async function prepare() {
@@ -21,9 +23,11 @@ prepare()
   .then(() => {
     createRoot(root).render(
       <StrictMode>
-        <QueryClientProvider client={queryClient}>
-          <App />
-        </QueryClientProvider>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
+        </ErrorBoundary>
       </StrictMode>,
     )
   })
