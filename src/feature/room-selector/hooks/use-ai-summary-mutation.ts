@@ -1,12 +1,14 @@
 import { useMutation, type UseMutationOptions } from "@tanstack/react-query";
+
 import { aiSummaryApi } from "@/api";
-import type { AISummary, RoomConfig, Selections } from "@/feature/room-selector/types";
+import type { AISummaryDto } from "@/dtos/ai-summary.dto";
+import type { RoomConfigDto, RoomConfigPayload } from "@/dtos/room-config.dto";
 
 export function useAiSummaryMutation(
   options?: UseMutationOptions<
-    AISummary | null,
+    AISummaryDto | null,
     Error,
-    { roomConfig: RoomConfig; selections: Selections }
+    { roomConfig: RoomConfigDto; selections: RoomConfigPayload }
   >,
 ) {
   return useMutation({

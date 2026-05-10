@@ -4,10 +4,10 @@ import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { SelectionsSection } from "@/feature/room-selector";
 import RoomSelectorHeader from "@/feature/room-selector/components/ui/RoomSelectorHeader";
 import { RoomSelectorSection } from "@/feature/room-selector/components/ui/RoomSelectorSection";
-import { useRoomConfigs } from "@/queries/use-room-config-queries";
+import { useRoomConfigsQuery } from "@/hooks/queries/use-room-configs-queries";
 
 export function RoomSelectionPage() {
-  const { data: roomConfigs = [], isLoading } = useRoomConfigs();
+  const { data: roomConfigs = [], isLoading } = useRoomConfigsQuery();
 
   return (
     <div className="min-h-screen bg-background">

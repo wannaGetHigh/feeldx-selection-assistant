@@ -1,18 +1,15 @@
-import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { RoomConfigDto } from "@/dtos/room-config.dto";
 
 import ReviewSelectedSection from "./components/ReviewSelectedSection";
 import { SelectionPanel } from "./components/SelectionPanel";
 import { SummarySection } from "./components/SummarySection";
-import type { RoomConfig, Selections } from "./types";
 
 interface SelectionsSectionProps {
-  roomConfig: RoomConfig;
+  roomConfig: RoomConfigDto;
 }
 
 export function SelectionsSection({ roomConfig }: SelectionsSectionProps) {
-  const [selections, setSelections] = useState<Selections>({});
-
   return (
     <div className="grid gap-6 lg:grid-cols-3">
       <div className="lg:col-span-2">
@@ -23,26 +20,17 @@ export function SelectionsSection({ roomConfig }: SelectionsSectionProps) {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <SelectionPanel
-              roomConfig={roomConfig}
-              selections={selections}
-              onChange={(categoryId, optionId) =>
-                setSelections({ ...selections, [categoryId]: optionId })
-              }
-            />
+            <SelectionPanel roomConfig={roomConfig} />
           </CardContent>
         </Card>
       </div>
 
       <div className="lg:col-span-1">
-        <ReviewSelectedSection
-          roomConfig={roomConfig}
-          selections={selections}
-        />
+        <ReviewSelectedSection roomConfig={roomConfig} />
       </div>
 
       <div className="lg:col-span-2">
-        <SummarySection roomConfig={roomConfig} selections={selections} />
+        <SummarySection roomConfig={roomConfig} />
       </div>
     </div>
   );

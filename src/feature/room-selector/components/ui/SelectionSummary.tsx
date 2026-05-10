@@ -1,28 +1,28 @@
-import match from 'match-ts'
+import { match } from 'ts-pattern'
 
 import { Badge } from '@/components/ui/badge'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import type { CostTier, RoomConfig, Selections } from '@/feature/room-selector/types'
+import type { CostTier, RoomConfigDto, RoomConfigPayload } from '@/dtos/room-config.dto'
 
 interface SelectionSummaryProps {
-  roomConfig: RoomConfig
-  selections: Selections
+  roomConfig: RoomConfigDto
+  selections: RoomConfigPayload
 }
 
 function getCostBadgeVariant(tier: CostTier): 'default' | 'secondary' | 'destructive' {
   return match(tier)
-    .on((t) => t === 'low', () => 'secondary' as const)
-    .on((t) => t === 'medium', () => 'default' as const)
-    .on((t: CostTier) => t === 'high', () => 'destructive' as const)
-    .otherwise(() => { throw new Error(`Unknown cost tier: ${tier}`) })
+    .with('low', () => 'secondary' as const)
+    .with('medium', () => 'default' as const)
+    .with('high', () => 'destructive' as const)
+    .exhaustive()
 }
 
 function getCostTierDescription(tier: CostTier): string {
   return match(tier)
-    .on((t) => t === 'low', () => 'Budget-friendly option with minimal cost impact')
-    .on((t) => t === 'medium', () => 'Mid-range option with moderate cost impact')
-    .on((t: CostTier) => t === 'high', () => 'Premium option with significant cost impact')
-    .otherwise(() => { throw new Error(`Unknown cost tier: ${tier}`) })
+    .with('low', () => 'Budget-friendly option with minimal cost impact')
+    .with('medium', () => 'Mid-range option with moderate cost impact')
+    .with('high', () => 'Premium option with significant cost impact')
+    .exhaustive()
 }
 
 export function SelectionSummary({ roomConfig, selections }: SelectionSummaryProps) {

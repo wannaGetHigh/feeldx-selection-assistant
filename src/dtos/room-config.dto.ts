@@ -1,23 +1,36 @@
 import { z } from 'zod'
 
-const MaterialOptionDtoSchema = z.object({
+export const CostTierSchema = z.enum(['low', 'medium', 'high'])
+export type CostTier = z.infer<typeof CostTierSchema>
+
+export const ShadeSchema = z.enum(['light', 'neutral', 'dark'])
+export type Shade = z.infer<typeof ShadeSchema>
+
+export const MaterialOptionDtoSchema = z.object({
   id: z.string(),
   name: z.string(),
-  costTier: z.enum(['low', 'medium', 'high']),
-  shade: z.enum(['light', 'neutral', 'dark']).optional(),
+  costTier: CostTierSchema,
+  shade: ShadeSchema.optional(),
 })
+export type MaterialOptionDto = z.infer<typeof MaterialOptionDtoSchema>
 
-const SelectionCategoryDtoSchema = z.object({
+export const SelectionCategoryDtoSchema = z.object({
   id: z.string(),
   label: z.string(),
   options: z.array(MaterialOptionDtoSchema),
 })
+export type SelectionCategoryDto = z.infer<typeof SelectionCategoryDtoSchema>
+
+const RoomTypeSchema = z.enum(['kitchen', 'bathroom', 'living-room', 'bedroom', 'laundry'])
+export type RoomType = z.infer<typeof RoomTypeSchema>
 
 export const RoomConfigDtoSchema = z.object({
-  type: z.enum(['kitchen', 'bathroom', 'living-room', 'bedroom', 'laundry']),
+  type: RoomTypeSchema,
   label: z.string(),
   emoji: z.string(),
   categories: z.array(SelectionCategoryDtoSchema),
 })
 
 export type RoomConfigDto = z.infer<typeof RoomConfigDtoSchema>
+
+export type RoomConfigPayload = Record<string, string>

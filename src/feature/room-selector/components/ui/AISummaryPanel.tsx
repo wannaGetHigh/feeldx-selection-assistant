@@ -1,8 +1,9 @@
 import { Badge } from '@/components/ui/badge'
-import type { AISummary, CostTier } from '@/feature/room-selector/types'
+import type { AISummaryDto } from '@/dtos/ai-summary.dto'
+import type { CostTier } from '@/dtos/room-config.dto'
 
 interface AISummaryPanelProps {
-  summary: AISummary
+  summary: AISummaryDto
 }
 
 const COST_LABEL: Record<CostTier, string> = {

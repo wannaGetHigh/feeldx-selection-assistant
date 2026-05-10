@@ -1,14 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { RoomConfigDto } from "@/dtos/room-config.dto";
+import { useRoomConfigQuery } from "@/hooks/queries/use-room-configs-queries";
 
 import { SelectionSummary } from "./ui/SelectionSummary";
-import type { RoomConfig, Selections } from "../types";
 
 interface ReviewSelectedSectionProps {
-  roomConfig: RoomConfig;
-  selections: Selections;
+  roomConfig: RoomConfigDto;
 }
 
-const ReviewSelectedSection = ({ roomConfig, selections }: ReviewSelectedSectionProps) => {
+const ReviewSelectedSection = ({ roomConfig }: ReviewSelectedSectionProps) => {
+  const { data: selections = {} } = useRoomConfigQuery(roomConfig.type);
+
   return (
     <Card>
       <CardHeader className="pb-3">

@@ -1,17 +1,17 @@
-import type { RoomConfig } from '../types'
+import type { RoomConfigDto } from '@/dtos/room-config.dto'
 import {
-  FLOORING_OPTIONS,
-  WALL_FINISH_OPTIONS,
+  BED_OPTIONS,
   BENCHTOP_OPTIONS,
   CABINETRY_OPTIONS,
+  CHAIR_OPTIONS,
+  FLOORING_OPTIONS,
   LIGHTING_OPTIONS,
   SOFA_OPTIONS,
   TABLE_OPTIONS,
-  CHAIR_OPTIONS,
-  BED_OPTIONS,
+  WALL_FINISH_OPTIONS,
 } from './options'
 
-export const ROOM_CONFIGS: RoomConfig[] = [
+export const ROOM_CONFIGS: RoomConfigDto[] = [
   {
     type: 'kitchen',
     label: 'Kitchen',

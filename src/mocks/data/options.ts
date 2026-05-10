@@ -1,6 +1,6 @@
-import type { MaterialOption } from '../types'
+import type { MaterialOptionDto } from '@/dtos/room-config.dto'
 
-export const FLOORING_OPTIONS: MaterialOption[] = [
+export const FLOORING_OPTIONS: MaterialOptionDto[] = [
   { id: 'flooring-timber', name: 'Timber', costTier: 'medium', shade: 'neutral' },
   { id: 'flooring-marble', name: 'Marble', costTier: 'high', shade: 'light' },
   { id: 'flooring-concrete', name: 'Concrete', costTier: 'medium', shade: 'dark' },
@@ -9,7 +9,7 @@ export const FLOORING_OPTIONS: MaterialOption[] = [
   { id: 'flooring-herringbone', name: 'Herringbone Timber', costTier: 'high', shade: 'dark' },
 ]
 
-export const WALL_FINISH_OPTIONS: MaterialOption[] = [
+export const WALL_FINISH_OPTIONS: MaterialOptionDto[] = [
   { id: 'wall-white-paint', name: 'White Paint', costTier: 'low', shade: 'light' },
   { id: 'wall-limewash', name: 'Limewash', costTier: 'medium', shade: 'light' },
   { id: 'wall-dark-paint', name: 'Dark Paint', costTier: 'low', shade: 'dark' },
@@ -18,7 +18,7 @@ export const WALL_FINISH_OPTIONS: MaterialOption[] = [
   { id: 'wall-timber-panel', name: 'Timber Panel', costTier: 'high', shade: 'dark' },
 ]
 
-export const BENCHTOP_OPTIONS: MaterialOption[] = [
+export const BENCHTOP_OPTIONS: MaterialOptionDto[] = [
   { id: 'bench-marble', name: 'Marble', costTier: 'high', shade: 'light' },
   { id: 'bench-engineered-stone', name: 'Engineered Stone', costTier: 'medium', shade: 'neutral' },
   { id: 'bench-laminate', name: 'Laminate', costTier: 'low', shade: 'neutral' },
@@ -26,7 +26,7 @@ export const BENCHTOP_OPTIONS: MaterialOption[] = [
   { id: 'bench-concrete', name: 'Concrete', costTier: 'medium', shade: 'dark' },
 ]
 
-export const CABINETRY_OPTIONS: MaterialOption[] = [
+export const CABINETRY_OPTIONS: MaterialOptionDto[] = [
   { id: 'cab-white-gloss', name: 'White Gloss', costTier: 'low', shade: 'light' },
   { id: 'cab-matte-white', name: 'Matte White', costTier: 'medium', shade: 'light' },
   { id: 'cab-natural-oak', name: 'Natural Oak', costTier: 'high', shade: 'neutral' },
@@ -35,7 +35,7 @@ export const CABINETRY_OPTIONS: MaterialOption[] = [
   { id: 'cab-sage', name: 'Sage Green', costTier: 'medium', shade: 'neutral' },
 ]
 
-export const LIGHTING_OPTIONS: MaterialOption[] = [
+export const LIGHTING_OPTIONS: MaterialOptionDto[] = [
   { id: 'light-pendant', name: 'Pendant Light', costTier: 'medium', shade: 'neutral' },
   { id: 'light-recessed', name: 'Recessed Downlights', costTier: 'low', shade: 'neutral' },
   { id: 'light-chandelier', name: 'Chandelier', costTier: 'high', shade: 'light' },
@@ -43,7 +43,7 @@ export const LIGHTING_OPTIONS: MaterialOption[] = [
   { id: 'light-wall-sconce', name: 'Wall Sconce', costTier: 'medium', shade: 'neutral' },
 ]
 
-export const SOFA_OPTIONS: MaterialOption[] = [
+export const SOFA_OPTIONS: MaterialOptionDto[] = [
   { id: 'sofa-linen', name: 'Linen Sofa', costTier: 'medium', shade: 'light' },
   { id: 'sofa-leather', name: 'Leather Sofa', costTier: 'high', shade: 'dark' },
   { id: 'sofa-velvet', name: 'Velvet Sofa', costTier: 'high', shade: 'dark' },
@@ -51,7 +51,7 @@ export const SOFA_OPTIONS: MaterialOption[] = [
   { id: 'sofa-modular', name: 'Modular Sofa', costTier: 'high', shade: 'neutral' },
 ]
 
-export const TABLE_OPTIONS: MaterialOption[] = [
+export const TABLE_OPTIONS: MaterialOptionDto[] = [
   { id: 'table-timber', name: 'Timber Dining Table', costTier: 'medium', shade: 'dark' },
   { id: 'table-marble', name: 'Marble Coffee Table', costTier: 'high', shade: 'light' },
   { id: 'table-glass', name: 'Glass Coffee Table', costTier: 'medium', shade: 'light' },
@@ -59,14 +59,14 @@ export const TABLE_OPTIONS: MaterialOption[] = [
   { id: 'table-rattan', name: 'Rattan Side Table', costTier: 'low', shade: 'neutral' },
 ]
 
-export const CHAIR_OPTIONS: MaterialOption[] = [
+export const CHAIR_OPTIONS: MaterialOptionDto[] = [
   { id: 'chair-timber', name: 'Timber Chair', costTier: 'medium', shade: 'dark' },
   { id: 'chair-upholstered', name: 'Upholstered Armchair', costTier: 'high', shade: 'neutral' },
   { id: 'chair-rattan', name: 'Rattan Chair', costTier: 'low', shade: 'neutral' },
   { id: 'chair-velvet', name: 'Velvet Accent Chair', costTier: 'high', shade: 'dark' },
 ]
 
-export const BED_OPTIONS: MaterialOption[] = [
+export const BED_OPTIONS: MaterialOptionDto[] = [
   { id: 'bed-timber', name: 'Timber Bed Frame', costTier: 'medium', shade: 'dark' },
   { id: 'bed-upholstered', name: 'Upholstered Bed', costTier: 'high', shade: 'neutral' },
   { id: 'bed-rattan', name: 'Rattan Bed', costTier: 'medium', shade: 'neutral' },

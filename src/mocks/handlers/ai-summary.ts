@@ -1,11 +1,12 @@
 import { http, HttpResponse } from 'msw'
+
+import type { RoomConfigDto, RoomConfigPayload } from '@/dtos/room-config.dto'
 import { generateSummary } from '@/feature/room-selector/lib/ai-summary'
-import type { RoomConfig, Selections } from '@/feature/room-selector/types'
 
 export const aiSummaryHandlers = [
   http.post('/api/ai/generate-summary', async ({ request }) => {
     try {
-      const { roomConfig, selections } = await request.json() as { roomConfig: RoomConfig; selections: Selections }
+      const { roomConfig, selections } = await request.json() as { roomConfig: RoomConfigDto; selections: RoomConfigPayload }
 
       await new Promise((resolve) => setTimeout(resolve, 500))
 

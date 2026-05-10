@@ -2,19 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
+import type { RoomConfigDto } from "@/dtos/room-config.dto";
+import { useRoomConfigQuery } from "@/hooks/queries/use-room-configs-queries";
+
 import { useAiSummaryMutation } from "../hooks/use-ai-summary-mutation";
-import type { RoomConfig, Selections } from "../types";
 import { AISummaryPanel } from "./ui/AISummaryPanel";
 
 interface SummarySectionProps {
-  roomConfig: RoomConfig;
-  selections: Selections;
+  roomConfig: RoomConfigDto;
 }
 
-export function SummarySection({
-  roomConfig,
-  selections,
-}: SummarySectionProps) {
+export function SummarySection({ roomConfig }: SummarySectionProps) {
+  const { data: selections = {} } = useRoomConfigQuery(roomConfig.type);
+
   const {
     mutate,
     data: aiSummary,

@@ -1,6 +1,7 @@
-import { AISummaryDtoSchema, type AISummaryDto } from "@/dtos/ai-summary.dto";
-import type { RoomConfig, Selections } from "@/feature/room-selector/types";
 import { serializeData } from "@/lib/serialize";
+
+import type { RoomConfigDto, RoomConfigPayload } from "@/dtos/room-config.dto";
+import { AISummaryDtoSchema, type AISummaryDto } from "@/dtos/ai-summary.dto";
 
 import { BaseApiAdapterClass } from "./base-api-adapter";
 
@@ -9,7 +10,7 @@ export class AiSummaryApiAdapterClass extends BaseApiAdapterClass {
     return "/ai/generate-summary";
   }
 
-  async generateSummary(roomConfig: RoomConfig, selections: Selections) {
+  async generateSummary(roomConfig: RoomConfigDto, selections: RoomConfigPayload) {
     const raw = await this.post<AISummaryDto>(this.getSummaryUrl(), {
       roomConfig,
       selections,
