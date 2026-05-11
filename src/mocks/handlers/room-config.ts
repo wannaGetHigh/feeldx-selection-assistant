@@ -59,7 +59,7 @@ export const roomConfigHandlers = [
       config: RoomConfigPayload;
     };
 
-    const updatedRoomConfig = { ...preferredConfig[room], ...config };
+    const updatedRoomConfig = Object.keys(config).length === 0 ? {} : { ...preferredConfig[room], ...config };
     preferredConfig = { ...preferredConfig, [room]: updatedRoomConfig };
 
     saveToStorage(preferredConfig);

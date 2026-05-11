@@ -6,6 +6,7 @@ import type { RoomConfigDto } from "@/dtos/room-config.dto";
 import { SelectionPanel } from "./components/SelectionPanel";
 import SectionContainer from "./components/ui/SectionContainer";
 import { Trigger } from "./components/ui/SummaryButtons";
+import ResetSelectionController from "./components/ResetSelectionController";
 
 const ReviewSelectedSection = lazy(
   () => import("./components/ReviewSelectedSection"),
@@ -21,7 +22,10 @@ export function SelectionsSection({ roomConfig }: SelectionsSectionProps) {
   return (
     <div className="grid gap-6 lg:grid-cols-3">
       <div className="lg:col-span-2">
-        <SectionContainer title={`${roomConfig.emoji} ${roomConfig.label} — Materials & Furniture`}>
+        <SectionContainer
+          title={`${roomConfig.emoji} ${roomConfig.label} — Materials & Furniture`}
+          actions={<ResetSelectionController roomConfig={roomConfig} />}
+        >
           <SelectionPanel roomConfig={roomConfig} />
         </SectionContainer>
       </div>
