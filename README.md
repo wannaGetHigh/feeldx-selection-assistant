@@ -19,7 +19,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173). No `.env` setup needed — `.env.development` is committed.
+Open [http://localhost:3000](http://localhost:3000). No `.env` setup needed
 
 ```bash
 npm run build    # production build
