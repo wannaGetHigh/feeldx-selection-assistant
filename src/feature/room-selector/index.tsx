@@ -1,9 +1,17 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { lazy, Suspense } from "react";
+
+import { Skeleton } from "@/components/ui/skeleton";
 import type { RoomConfigDto } from "@/dtos/room-config.dto";
 
-import ReviewSelectedSection from "./components/ReviewSelectedSection";
 import { SelectionPanel } from "./components/SelectionPanel";
-import { SummarySection } from "./components/SummarySection";
+import SectionContainer from "./components/ui/SectionContainer";
+import { Trigger } from "./components/ui/SummaryButtons";
+
+const ReviewSelectedSection = lazy(
+  () => import("./components/ReviewSelectedSection"),
+);
+
+const SummarySection = lazy(() => import("./components/SummarySection"));
 
 interface SelectionsSectionProps {
   roomConfig: RoomConfigDto;
@@ -13,24 +21,27 @@ export function SelectionsSection({ roomConfig }: SelectionsSectionProps) {
   return (
     <div className="grid gap-6 lg:grid-cols-3">
       <div className="lg:col-span-2">
-        <Card className="transition-shadow duration-200 hover:shadow-md">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base">
-              {roomConfig.emoji} {roomConfig.label} — Materials &amp; Furniture
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <SelectionPanel roomConfig={roomConfig} />
-          </CardContent>
-        </Card>
+        <SectionContainer title={`${roomConfig.emoji} ${roomConfig.label} — Materials & Furniture`}>
+          <SelectionPanel roomConfig={roomConfig} />
+        </SectionContainer>
       </div>
 
       <div className="lg:col-span-1">
-        <ReviewSelectedSection roomConfig={roomConfig} />
+        <Suspense fallback={<Skeleton className="w-full h-full" />}>
+          <ReviewSelectedSection roomConfig={roomConfig} />
+        </Suspense>
       </div>
 
       <div className="lg:col-span-2">
-        <SummarySection roomConfig={roomConfig} />
+        <Suspense
+          fallback={
+            <SectionContainer title="AI Summary">
+              <Trigger />
+            </SectionContainer>
+          }
+        >
+          <SummarySection roomConfig={roomConfig} />
+        </Suspense>
       </div>
     </div>
   );

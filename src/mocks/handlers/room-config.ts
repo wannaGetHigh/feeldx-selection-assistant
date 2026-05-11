@@ -1,5 +1,5 @@
 import { http, HttpResponse } from "msw";
-import type { RoomConfigPayload, RoomType } from "@/dtos/room-config.dto";
+import { RoomTypeSchema, type RoomConfigPayload, type RoomType } from "@/dtos/room-config.dto";
 
 import { ROOM_CONFIGS } from "../data/rooms";
 
@@ -23,17 +23,21 @@ function loadFromStorage(): Record<RoomType, RoomConfigPayload> {
       const parsed = JSON.parse(raw) as Partial<Record<RoomType, RoomConfigPayload>>;
       return { ...DEFAULT_CONFIG, ...parsed };
     }
-  } catch {}
+  } catch (error) {
+    if (import.meta.env.DEV) console.warn('[room-config] Failed to load from storage:', error);
+  }
   return { ...DEFAULT_CONFIG };
 }
 
 function saveToStorage(config: Record<RoomType, RoomConfigPayload>) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
-  } catch {}
+  } catch (error) {
+    if (import.meta.env.DEV) console.warn('[room-config] Failed to save to storage:', error);
+  }
 }
 
-const preferredConfig = loadFromStorage();
+let preferredConfig = loadFromStorage();
 
 export const roomConfigHandlers = [
   http.get("/api/room-configs", () => {
@@ -41,8 +45,12 @@ export const roomConfigHandlers = [
   }),
 
   http.get("/api/room-configs/room", ({ request }) => {
-    const room = new URL(request.url).searchParams.get("room") as RoomType;
-    return HttpResponse.json(preferredConfig[room] ?? null);
+    const roomParam = new URL(request.url).searchParams.get("room");
+    const result = RoomTypeSchema.safeParse(roomParam);
+    if (!result.success) {
+      return HttpResponse.json({ error: "Invalid room type" }, { status: 400 });
+    }
+    return HttpResponse.json(preferredConfig[result.data] ?? null);
   }),
 
   http.put("/api/room-configs", async ({ request }) => {
@@ -51,12 +59,10 @@ export const roomConfigHandlers = [
       config: RoomConfigPayload;
     };
 
-    preferredConfig[room] = {
-      ...preferredConfig[room],
-      ...config,
-    };
+    const updatedRoomConfig = { ...preferredConfig[room], ...config };
+    preferredConfig = { ...preferredConfig, [room]: updatedRoomConfig };
 
     saveToStorage(preferredConfig);
-    return HttpResponse.json(preferredConfig[room]);
+    return HttpResponse.json(updatedRoomConfig);
   }),
 ];

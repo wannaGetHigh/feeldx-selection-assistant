@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { RoomConfigDto } from "@/dtos/room-config.dto";
 import { useRoomConfigQuery } from "@/hooks/queries/use-room-configs-queries";
 
+import SectionContainer from "./ui/SectionContainer";
 import { SelectionSummary } from "./ui/SelectionSummary";
 
 interface ReviewSelectedSectionProps {
@@ -12,15 +12,10 @@ const ReviewSelectedSection = ({ roomConfig }: ReviewSelectedSectionProps) => {
   const { data: selections = {} } = useRoomConfigQuery(roomConfig.type);
 
   return (
-    <Card className="transition-shadow duration-200 hover:shadow-md">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-base">Selected Items</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <SelectionSummary roomConfig={roomConfig} selections={selections} />
-      </CardContent>
-    </Card>
-  );
+    <SectionContainer title='Selected Items'>
+      <SelectionSummary roomConfig={roomConfig} selections={selections} />
+    </SectionContainer>
+  )
 };
 
 export default ReviewSelectedSection;

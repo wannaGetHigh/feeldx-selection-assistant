@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import {
   Select,
   SelectContent,
@@ -13,7 +14,6 @@ import {
   roomConfigsQK,
   useRoomConfigQuery,
 } from "@/hooks/queries/use-room-configs-queries";
-import { useQueryClient } from "@tanstack/react-query";
 
 interface SelectionPanelProps {
   roomConfig: RoomConfigDto;

@@ -21,7 +21,7 @@ export const SelectionCategoryDtoSchema = z.object({
 })
 export type SelectionCategoryDto = z.infer<typeof SelectionCategoryDtoSchema>
 
-const RoomTypeSchema = z.enum(['kitchen', 'bathroom', 'living-room', 'bedroom', 'laundry', 'dining-room', 'home-office', 'outdoor'])
+export const RoomTypeSchema = z.enum(['kitchen', 'bathroom', 'living-room', 'bedroom', 'laundry', 'dining-room', 'home-office', 'outdoor'])
 export type RoomType = z.infer<typeof RoomTypeSchema>
 
 export const RoomConfigDtoSchema = z.object({

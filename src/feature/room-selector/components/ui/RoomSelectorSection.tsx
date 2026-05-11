@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { PropsWithChildren } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function RoomSelectorSection({ children }: PropsWithChildren) {
   return (

@@ -7,7 +7,7 @@ import { RoomSelectorSection } from "@/feature/room-selector/components/ui/RoomS
 import { useRoomConfigsQuery } from "@/hooks/queries/use-room-configs-queries";
 
 export function RoomSelectionPage() {
-  const { data: roomConfigs = [], isLoading } = useRoomConfigsQuery();
+  const { data: roomConfigs = [], isLoading, isError } = useRoomConfigsQuery();
 
   return (
     <div className="min-h-screen bg-background">
@@ -16,6 +16,10 @@ export function RoomSelectionPage() {
 
         {isLoading ? (
           <Skeleton className="h-10 w-full" />
+        ) : isError ? (
+          <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-4 text-center text-sm text-destructive">
+            Failed to load room configurations. Please refresh the page.
+          </div>
         ) : (
           <Tabs className="gap-6">
             <RoomSelectorSection>

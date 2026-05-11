@@ -13,7 +13,7 @@ export const aiSummaryHandlers = [
       const summary = generateSummary(roomConfig, selections)
       return HttpResponse.json(summary)
     } catch (err) {
-      console.error('[MSW] /api/ai/generate-summary handler error:', err)
+      if (import.meta.env.DEV) console.error('[MSW] /api/ai/generate-summary handler error:', err)
       return HttpResponse.json({ message: 'Failed to generate summary' }, { status: 500 })
     }
   }),

@@ -4,6 +4,16 @@ import { getCostRange, sumCostRanges } from "@/lib/cost-ranges";
 
 const COST_RANK: Record<CostTier, number> = { low: 0, medium: 1, high: 2 };
 
+const CATEGORY_ID = {
+  FLOORING: 'flooring',
+  WALL_FINISH: 'wall-finish',
+  LIGHTING: 'lighting',
+} 
+
+const CATEGORY_LABEL = {
+  LIGHTING: 'Lighting',
+};
+
 function highestCostTier(tiers: CostTier[]): CostTier {
   if (tiers.length === 0) return "low";
   return tiers.reduce((prev, curr) =>
@@ -39,11 +49,11 @@ export function generateSummary(
   const warnings: string[] = [];
 
   const flooringOption = roomConfig.categories
-    .find((c) => c.id === "flooring")
-    ?.options.find((o) => o.id === selections["flooring"]);
+    .find((c) => c.id === CATEGORY_ID.FLOORING)
+    ?.options.find((o) => o.id === selections[CATEGORY_ID.FLOORING]);
   const wallOption = roomConfig.categories
-    .find((c) => c.id === "wall-finish")
-    ?.options.find((o) => o.id === selections["wall-finish"]);
+    .find((c) => c.id === CATEGORY_ID.WALL_FINISH)
+    ?.options.find((o) => o.id === selections[CATEGORY_ID.WALL_FINISH]);
 
   if (flooringOption?.shade === "dark" && wallOption?.shade === "dark") {
     warnings.push(
@@ -71,13 +81,13 @@ export function generateSummary(
 
   const recommendations: string[] = [];
 
-  if (missingCategories.includes("Lighting")) {
+  if (missingCategories.includes(CATEGORY_LABEL.LIGHTING)) {
     recommendations.push(
       "Add a lighting selection — it is one of the most impactful elements in any room.",
     );
   }
 
-  const otherMissing = missingCategories.filter((c) => c !== "Lighting");
+  const otherMissing = missingCategories.filter((c) => c !== CATEGORY_LABEL.LIGHTING);
   if (otherMissing.length > 0) {
     recommendations.push(
       `Complete your selections for: ${otherMissing.join(", ")}.`,
@@ -94,7 +104,7 @@ export function generateSummary(
     );
   }
 
-  if (flooringOption?.shade === "dark" && !selections["lighting"]) {
+  if (flooringOption?.shade === "dark" && !selections[CATEGORY_ID.LIGHTING]) {
     recommendations.push(
       "With dark flooring, strategic lighting will be essential — prioritise your lighting selection.",
     );
