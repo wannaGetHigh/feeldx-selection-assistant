@@ -2,7 +2,7 @@ import { match } from 'ts-pattern'
 
 import { Badge } from '@/components/ui/badge'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import type { CostTier, RoomConfigDto, RoomConfigPayload } from '@/dtos/room-config.dto'
+import type { CostTier, RoomConfigDto, RoomConfigPayload, Shade } from '@/dtos/room-config.dto'
 import { formatCostRange, getCostRange } from '@/lib/cost-ranges'
 
 interface SelectionSummaryProps {
@@ -16,6 +16,14 @@ function getCostBadgeVariant(tier: CostTier): 'default' | 'secondary' | 'destruc
     .with('medium', () => 'default' as const)
     .with('high', () => 'destructive' as const)
     .exhaustive()
+}
+
+function getSwatchClass(shade: Shade | undefined): string {
+  return match(shade)
+    .with('light', () => 'bg-stone-100 border border-stone-300')
+    .with('neutral', () => 'bg-stone-400')
+    .with('dark', () => 'bg-stone-700')
+    .otherwise(() => 'bg-muted border border-border')
 }
 
 function getCostTierDescription(tier: CostTier): string {
@@ -51,6 +59,7 @@ export function SelectionSummary({ roomConfig, selections }: SelectionSummaryPro
               <span className="text-sm text-muted-foreground shrink-0">{category.label}</span>
               {option ? (
                 <div className="flex items-center gap-2 min-w-0">
+                  <div className={`w-4 h-4 rounded-sm shrink-0 ${getSwatchClass(option.shade)}`} />
                   <span className="text-sm font-medium truncate">{option.name}</span>
                   <Tooltip>
                     <TooltipTrigger render={<span />}>

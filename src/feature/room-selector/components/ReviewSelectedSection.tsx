@@ -1,6 +1,7 @@
 import type { RoomConfigDto } from "@/dtos/room-config.dto";
 import { useRoomConfigQuery } from "@/hooks/queries/use-room-configs-queries";
 
+import { PreviewGallery } from "./PreviewGallery";
 import SectionContainer from "./ui/SectionContainer";
 import { SelectionSummary } from "./ui/SelectionSummary";
 
@@ -13,7 +14,10 @@ const ReviewSelectedSection = ({ roomConfig }: ReviewSelectedSectionProps) => {
 
   return (
     <SectionContainer title='Selected Items'>
-      <SelectionSummary roomConfig={roomConfig} selections={selections} />
+      <PreviewGallery roomConfig={roomConfig} selections={selections} />
+      <div className="mt-3 border-t border-border pt-3">
+        <SelectionSummary roomConfig={roomConfig} selections={selections} />
+      </div>
     </SectionContainer>
   )
 };

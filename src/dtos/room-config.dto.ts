@@ -11,6 +11,7 @@ export const MaterialOptionDtoSchema = z.object({
   name: z.string(),
   costTier: CostTierSchema,
   shade: ShadeSchema.optional(),
+  imageUrl: z.string().optional(),
 })
 export type MaterialOptionDto = z.infer<typeof MaterialOptionDtoSchema>
 
