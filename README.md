@@ -1,29 +1,35 @@
 # FeelDX Selection Assistant
 
-A room materials and furniture selection tool. Users pick finishes across 8 room types (Kitchen, Bathroom, Living Room, Bedroom, Laundry, Dining Room, Home Office, Outdoor) and get a cost estimate + design recommendation summary.
+A room materials and furniture selection tool. Users pick finishes across 8 room types (Kitchen, Bathroom, Living Room, Bedroom, Laundry, Dining Room, Home Office, Outdoor) and get a cost estimate + AI-generated design recommendation summary.
 
-The API is fully mocked with MSW — no backend required.
+> The API is fully mocked with MSW — no backend or `.env` setup required.
 
 ---
 
 ## Tech Stack
 
-React 19 · TypeScript 6 · Vite 8 · Tailwind CSS v4 · shadcn/ui · TanStack Query v5 · Axios · Zod · MSW v2
+| Layer | Package |
+|---|---|
+| UI | React 19, Tailwind CSS v4, shadcn/ui |
+| Language | TypeScript 6 |
+| Bundler | Vite 8 |
+| Data fetching | TanStack Query v5, Axios |
+| Validation | Zod |
+| API mocking | MSW v2 |
 
 ---
 
-## Setup & Running
+## Running Locally
 
 ```bash
-npm install
-npm run dev
+npm install       # install dependencies
+npm run dev       # start dev server → http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000). No `.env` setup needed
-
 ```bash
-npm run build    # production build
-npm run lint     # ESLint
+npm run build     # production build
+npm run preview   # preview production build → http://localhost:3000
+npm run lint      # run ESLint
 ```
 
 ---
